@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" type="text/css" href="styles.css" media="screen" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <img src="logo2-no-bg.png" alt="Logo da Empresa" id="logo" class="center" />
+
+    <title>Cadastrar Item</title>
+  </head>
+  <body>
+    <div class="container-login" style="max-width: 600px">
+      <h1>Cadastro de Produtos</h1>
+      <form
+        action="processar_cadastro.php"
+        method="post"
+        enctype="multipart/form-data"
+      >
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required />
+
+        <label for="descricao">Descrição:</label>
+        <textarea id="descricao" name="descricao" rows="4" required></textarea>
+
+        <label for="imagem">Imagem:</label>
+        <input
+          type="file"
+          id="imagem"
+          name="imagem"
+          accept="image/*"
+          required
+        />
+
+        <label for="id">ID:</label>
+        <input type="text" id="id" name="id" required />
+
+        <label for="tags">Tags (separadas por vírgula):</label>
+        <input type="text" id="tags" name="tags" required />
+
+        <input
+          type="submit"
+          value="Cadastrar Item"
+          style="color: var(--pink)"
+        />
+      </form>
+    </div>
+  </body>
+</html>

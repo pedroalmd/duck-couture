@@ -1,0 +1,178 @@
+:root {
+  --blue: #1702fa;
+  --pink: #ffe1e1;
+}
+
+body {
+  font-family: Helvetica;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #ffe1e1;
+  color: #fff;
+  padding-bottom: 10px;
+  max-height: 180px;
+}
+
+a {
+  color: #1702fa;
+}
+
+#logo {
+  max-height: 200px;
+  margin: auto;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.video {
+  text-align: center;
+}
+
+.video iframe {
+  max-width: 300px;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+
+.gallery img {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  max-width: 200px;
+}
+
+.products {
+  background-color: #f9f9f9;
+  padding: 20px;
+  text-align: center;
+}
+
+.founders {
+  margin-top: 20px;
+}
+
+.founders table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.founders th,
+.founders td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px 0;
+  text-align: center;
+}
+
+.contact-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.payment-methods img {
+  max-width: 50px;
+  margin-right: 10px;
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 98%;
+  padding: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+input[type="submit"] {
+  background-color: #1702fa;
+  color: #1702fa;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.login {
+  background-color: #1702fa;
+  color: #1702fa;
+  display: block;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+input[type="submit"]:hover {
+  background-color: #aca4fa;
+}
+
+.container-login {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+  background-color: var(--pink);
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.login-button {
+  color: var(--blue);
+}
+
+.card {
+  width: 100px;
+  height: 100px;
+  background-color: #ccc;
+  border: 2px solid #fff;
+  display: inline-block;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 100px;
+}
+
+.container-game {
+  max-width: 400px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.card {
+  width: 100px;
+  height: 100px;
+  background-color: var(--pink);
+  border: 2px solid #fff;
+  display: inline-block;
+  margin: 5px;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 100px;
+}
