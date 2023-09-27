@@ -1,117 +1,117 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="stylesheet" type="text/css" href="styles.css" media="screen" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <img src="images/logo2-no-bg.png" alt="Logo da Empresa" id="logo" class="center" />
-    <title>Jogo da Memória</title>
-  </head>
-  <body>
-    <div class="container-game">
-      <h1>Jogo da Memória</h1>
-      <div id="game-board"></div>
-      <button
-        id="reset-button"
-        style="background-color: var(--blue); color: var(--pink)"
-      >
-        Reiniciar
-      </button>
-    </div>
 
-    <script>
-      const cards = [
-        "images/patolino.png",
-        "images/patolino.png",
-        "images/tio-patinhas.webp",
-        "images/tio-patinhas.webp",
-        "images/donald.png",
-        "images/donald.png",
-        "images/sobrinhos.webp",
-        "images/sobrinhos.webp",
-      ];
-      let flippedCards = [];
-      let matchedCards = [];
-      let lockBoard = false;
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" type="text/css" href="styles.css" media="screen" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <img src="images/logo2-no-bg.png" alt="Logo da Empresa" id="logo" class="center" />
+  <title>Jogo da Memória</title>
+</head>
 
-      function shuffle(array) {
-        for (let i = array.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [array[i], array[j]] = [array[j], array[i]];
-        }
+<body>
+  <div class="container-game">
+    <h1>Jogo da Memória</h1>
+    <div id="game-board"></div>
+    <button id="reset-button" style="background-color: var(--blue); color: var(--pink)">
+      Reiniciar
+    </button>
+  </div>
+
+  <script>
+    const cards = [
+      "images/patolino.png",
+      "images/patolino.png",
+      "images/tio-patinhas.webp",
+      "images/tio-patinhas.webp",
+      "images/donald.png",
+      "images/donald.png",
+      "images/sobrinhos.webp",
+      "images/sobrinhos.webp",
+    ];
+    let flippedCards = [];
+    let matchedCards = [];
+    let lockBoard = false;
+
+    function shuffle(array) {
+      for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
       }
+    }
 
-      function createBoard() {
-        shuffle(cards);
-        const gameBoard = document.getElementById("game-board");
+    function createBoard() {
+      shuffle(cards);
+      const gameBoard = document.getElementById("game-board");
 
-        cards.forEach((card, index) => {
-          const cardElement = document.createElement("img");
-          cardElement.classList.add("card");
-          cardElement.dataset.card = card;
-          cardElement.dataset.index = index;
-          cardElement.textContent = "";
-          cardElement.addEventListener("click", flipCard);
-          gameBoard.appendChild(cardElement);
-        });
-      }
+      cards.forEach((card, index) => {
+        const cardElement = document.createElement("img");
+        cardElement.classList.add("card");
+        cardElement.dataset.card = card;
+        cardElement.dataset.index = index;
+        cardElement.textContent = "";
+        cardElement.addEventListener("click", flipCard);
+        gameBoard.appendChild(cardElement);
+      });
+    }
 
-      function flipCard() {
-        if (lockBoard) return;
-        if (this === flippedCards[0]) return;
+    function flipCard() {
+      if (lockBoard) return;
+      if (this === flippedCards[0]) return;
 
-        this.src = cards[this.dataset.index];
+      this.src = cards[this.dataset.index];
 
-        if (flippedCards.length === 0) {
-          flippedCards.push(this);
-          return;
+      if (flippedCards.length === 0) {
+        flippedCards.push(this);
+        return;
+      } else {
+        flippedCards.push(this);
+        if (flippedCards[0].src === flippedCards[1].src) {
+          matchedCards.push(flippedCards[0], flippedCards[1]);
+          flippedCards = [];
+
+          if (matchedCards.length === cards.length) {
+            alert("Parabéns! Você venceu o jogo e ganhou um cupom de 10% de desconto! use o código: " + makeid(5));
+          }
         } else {
-          flippedCards.push(this);
-          if (flippedCards[0].src === flippedCards[1].src) {
-            matchedCards.push(flippedCards[0], flippedCards[1]);
+          lockBoard = true;
+          setTimeout(() => {
+            flippedCards[0].src = "";
+            flippedCards[1].src = "";
             flippedCards = [];
-
-            if (matchedCards.length === cards.length) {
-              alert("Parabéns! Você venceu o jogo e ganhou um cupom de 10% de desconto! use o código: " + makeid(5) );
-            }
-          } else {
-            lockBoard = true;
-            setTimeout(() => {
-              flippedCards[0].src = "";
-              flippedCards[1].src = "";
-              flippedCards = [];
-              lockBoard = false;
-            }, 1000);
-          }
+            lockBoard = false;
+          }, 1000);
         }
       }
+    }
 
-      function makeid(length) {
-          let result = '';
-          const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-          const charactersLength = characters.length;
-          let counter = 0;
-          while (counter < length) {
-            result += characters.charAt(Math.floor(Math.random() * charactersLength));
-            counter += 1;
-          }
-          return result + "10";
+    function makeid(length) {
+      let result = '';
+      const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+      const charactersLength = characters.length;
+      let counter = 0;
+      while (counter < length) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        counter += 1;
       }
+      return result + "10";
+    }
 
-      function resetGame() {
-        const gameBoard = document.getElementById("game-board");
-        gameBoard.innerHTML = "";
-        flippedCards = [];
-        matchedCards = [];
-        lockBoard = false;
-        createBoard();
-      }
-
-      document
-        .getElementById("reset-button")
-        .addEventListener("click", resetGame);
-
+    function resetGame() {
+      const gameBoard = document.getElementById("game-board");
+      gameBoard.innerHTML = "";
+      flippedCards = [];
+      matchedCards = [];
+      lockBoard = false;
       createBoard();
-    </script>
-  </body>
+    }
+
+    document
+      .getElementById("reset-button")
+      .addEventListener("click", resetGame);
+
+    createBoard();
+  </script>
+</body>
+
 </html>
